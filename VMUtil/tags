@@ -1,0 +1,1 @@
+main	/VMUtil/test/main1.cpp	/^int main()$/;"	function	line:11	signature:()	returns:using namespace std; using std::string; using std::cout; using std::cin;  
