@@ -14,30 +14,97 @@ int main()
 	int choice=0;
 	cout<<"Enter the url of the XenServer:: ";
 	cin>>url;
-	cout<<"\nEnter the username:: ";
+	cout<<"Enter the username:: ";
 	cin>>username;
-	cout<<"\nEnter the password:: ";
+	cout<<"Enter the password:: ";
 	cin>>password;
-	system("clear");
-	cout<<"\n-------------MENU--------------\n";
-	cout<<"1.Start VM.\n2.Stop VM\n3.Suspend VM\n4.Pause VM\n5.Reboot VM\n6.Migrate VM\n7.exit\nEnter your choice:: ";
-	cin>>choice;
-	if(choice<1||choice>7)
+	VMUtil *vmutil=new VMUtil(url,username,password);
+	while(1)
 	{
-			cout<<"\nWrong choice entered.... Program will end now.... ";
-	}
-	switch(choice)
-	{
-		case 1:
-			cin.clear();
-			cin.ignore(INT_MAX,'\n');
-			cout<<"\nEnter the vmname which you want to start:: ";
-			getline(cin,vmname,'\n');
-			cout<<"VMName received is "<<vmname;
-			cout.flush();
-			vmname="\'"+vmname+"\'";
-			VMUtil *vmutil=new VMUtil(url,username,password);
-			vmutil->startVM(vmname);
+		system("clear");
+		cout<<"-------------MENU--------------\n";
+		cout<<" 1.Start VM.\n 2.Stop VM\n 3.Suspend VM\n 4.Pause VM\n 5.Reboot VM\n 6.Migrate VM\n 7.exit\n";
+		cout<<"-------------------------------\n";
+		cout<<"Enter your choice:: ";
+		cin>>choice;
+		if(choice<1||choice>7)
+		{
+				cout<<"\nWrong choice entered.... Program will end now.... \n";
+				exit(0);
+		}
+		system("clear");
+		switch(choice)
+		{
+			case 1:
+				cin.clear();
+				cin.ignore(INT_MAX,'\n');
+				cout<<"Enter the vmname which you want to start:: ";
+				getline(cin,vmname,'\n');
+				cout<<"VMName received is "<<vmname;
+				cout.flush();
+				vmname="\'"+vmname+"\'";
+				vmutil->startVM(vmname);
+				break;
+			case 2:
+				cin.clear();
+				cin.ignore(INT_MAX,'\n');
+				cout<<"Enter the vmname which you want to stop:: ";
+				getline(cin,vmname,'\n');
+				cout<<"VMName received is "<<vmname;
+				cout.flush();
+				vmname="\'"+vmname+"\'";
+				vmutil->stopVM(vmname);
+				break;
+			case 3:
+				cin.clear();
+				cin.ignore(INT_MAX,'\n');
+				cout<<"Enter the vmname which you want to suspend:: ";
+				getline(cin,vmname,'\n');
+				cout<<"VMName received is "<<vmname;
+				cout.flush();
+				vmname="\'"+vmname+"\'";
+				vmutil->suspendVM(vmname);	
+				break;
+			case 4:
+				cin.clear();
+				cin.ignore(INT_MAX,'\n');
+				cout<<"Enter the vmname which you want to pause:: ";
+				getline(cin,vmname,'\n');
+				cout<<"VMName received is "<<vmname;
+				cout.flush();
+				vmname="\'"+vmname+"\'";
+				vmutil->pauseVM(vmname);
+				break;
+			case 5:
+				cin.clear();
+				cin.ignore(INT_MAX,'\n');
+				cout<<"Enter the vmname which you want to reboot:: ";
+				getline(cin,vmname,'\n');
+				cout<<"VMName received is "<<vmname;
+				cout.flush();
+				vmname="\'"+vmname+"\'";
+				vmutil->rebootVM(vmname);
+				break;
+			case 6:
+				cin.clear();
+				cin.ignore(INT_MAX,'\n');
+				cout<<"Enter the vmname which you want to migrate:: ";
+				getline(cin,vmname,'\n');
+				cout<<"VMName received is "<<vmname;
+				cout.flush();
+				vmname="\'"+vmname+"\'";
+				cout<<"\nEnter the destination server name:: ";
+				getline(cin,destn_server,'\n');
+				cout<<"\nDestination server name received is:: "<<destn_server<<std::endl;
+				cout.flush();
+				destn_server="\'"+destn_server+"\'";
+				vmutil->migrateVM(vmname,destn_server);
+				break;
+			case 7:
+				exit(1);
+		}
+		cout<<"\nPress a key to continue.......";
+		getchar();
 	}
 	return 0;
 }

@@ -10,7 +10,9 @@
  * Notes:		
  *********************************************************************/
  
+ #include <iostream>
  #include <stdlib.h>
+ #include <stdio.h>
  #include "VMUtil.h"
  
  using namespace std;
@@ -24,35 +26,73 @@ VMUtil::VMUtil(string url1,string uname,string pass){
 	}
 
 int VMUtil::startVM(string vmname){
+		//char *command;
+		//string combined_command;
+		//combined_command="python " + path + " " + url + " " + username + " " + password + " " + "vm_start" + " " + vmname;
+		//command=&combined_command[0];
+		//system(command);
 		char *command;
 		string combined_command;
 		combined_command="python " + path + " " + url + " " + username + " " + password + " " + "vm_start" + " " + vmname;
 		command=&combined_command[0];
-		system(command);
-		return 0;
+		return performoperation(command);
 	}
 
 int VMUtil::stopVM(string vmname){
-		
+		char *command;
+		string combined_command;
+		combined_command="python " + path + " " + url + " " + username + " " + password + " " + "vm_stop" + " " + vmname;
+		command=&combined_command[0];
+		return performoperation(command);
 	return 0;
 	}
 
 int VMUtil::suspendVM(string vmname){
-		
+		char *command;
+		string combined_command;
+		combined_command="python " + path + " " + url + " " + username + " " + password + " " + "vm_suspend" + " " + vmname;
+		command=&combined_command[0];
+		return performoperation(command);
 	return 0;
 	}
 
 int VMUtil::rebootVM(string vmname){
-		
+		char *command;
+		string combined_command;
+		combined_command="python " + path + " " + url + " " + username + " " + password + " " + "vm_reboot" + " " + vmname;
+		command=&combined_command[0];
+		return performoperation(command);
 	return 0;
 	}
 
-int VMUtil::pauseVM(string vname){
-	
+int VMUtil::pauseVM(string vmname){
+		char *command;
+		string combined_command;
+		combined_command="python " + path + " " + url + " " + username + " " + password + " " + "vm_pause" + " " + vmname;
+		command=&combined_command[0];
+		return performoperation(command);
 	return 0;
 	}
 
 int VMUtil::migrateVM(string vmname,string destn_server){
-		
+		char *command;
+		string combined_command;
+		combined_command="python " + path + " " + url + " " + username + " " + password + " " + "vm_migrate" + " " + vmname + " " + destn_server;
+		command=&combined_command[0];
+		return performoperation(command);
+	return 0;
+	}
+	
+int VMUtil::performoperation(char* command){
+	FILE *op;
+	char buff[512];
+	if(!(op=popen(command,"r"))){
+			return 1;
+		}
+	cout<<"\n";
+	while(fgets(buff,sizeof(buff),op)!=NULL){
+		cout<<buff;
+	}
+	pclose(op);
 	return 0;
 	}

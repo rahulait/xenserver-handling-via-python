@@ -21,15 +21,13 @@ public:
 	int suspendVM(string);
 	int pauseVM(string);
 	int migrateVM(string,string);
+	int performoperation(char *);
 	
 private:
 	string path;
 	string url;
 	string username;
 	string password;
-	string vmname;
-	string destn_server;
-	
 };
 
 #endif
