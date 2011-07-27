@@ -14,16 +14,22 @@ using std::string;
 class VMUtil
 {
 public:
-	VMUtil(string,string,string);  //Constructor
-	int startVM(string);
-	int stopVM(string);
-	int rebootVM(string);
-	int suspendVM(string);
-	int pauseVM(string);
-	int migrateVM(string,string);
-	int performoperation(char *);
+	VMUtil(const string &url1,const string &uname,const string &pass)  //Constructor
+	{
+		path="/home/ubuntu1/Desktop/combinedtask.py";
+		url=url1;
+		username=uname;
+		password=pass;
+	}
+	virtual int startVM(const string&)=0;
+	virtual int stopVM(const string&)=0;
+	virtual int rebootVM(const string&)=0;
+	virtual int suspendVM(const string&)=0;
+	virtual int pauseVM(const string&)=0;
+	virtual int migrateVM(const string&, const string&)=0;
+	virtual int performoperation(char *)=0;
 	
-private:
+protected:
 	string path;
 	string url;
 	string username;
