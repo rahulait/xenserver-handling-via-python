@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <climits>
-#include "VMUtil.h"
+#include "XENVMUtil.h"
 
 using namespace std;
 using std::string;
@@ -18,7 +18,7 @@ int main()
 	cin>>username;
 	cout<<"Enter the password:: ";
 	cin>>password;
-	VMUtil *vmutil=new VMUtil(url,username,password);
+	XENVMUtil *xenvmutil=new XENVMUtil(url,username,password);
 	while(1)
 	{
 		system("clear");
@@ -43,7 +43,7 @@ int main()
 				cout<<"VMName received is "<<vmname;
 				cout.flush();
 				vmname="\'"+vmname+"\'";
-				vmutil->startVM(vmname);
+				xenvmutil->startVM(vmname);
 				break;
 			case 2:
 				cin.clear();
@@ -53,7 +53,7 @@ int main()
 				cout<<"VMName received is "<<vmname;
 				cout.flush();
 				vmname="\'"+vmname+"\'";
-				vmutil->stopVM(vmname);
+				xenvmutil->stopVM(vmname);
 				break;
 			case 3:
 				cin.clear();
@@ -63,7 +63,7 @@ int main()
 				cout<<"VMName received is "<<vmname;
 				cout.flush();
 				vmname="\'"+vmname+"\'";
-				vmutil->suspendVM(vmname);	
+				xenvmutil->suspendVM(vmname);	
 				break;
 			case 4:
 				cin.clear();
@@ -73,7 +73,7 @@ int main()
 				cout<<"VMName received is "<<vmname;
 				cout.flush();
 				vmname="\'"+vmname+"\'";
-				vmutil->pauseVM(vmname);
+				xenvmutil->pauseVM(vmname);
 				break;
 			case 5:
 				cin.clear();
@@ -83,7 +83,7 @@ int main()
 				cout<<"VMName received is "<<vmname;
 				cout.flush();
 				vmname="\'"+vmname+"\'";
-				vmutil->rebootVM(vmname);
+				xenvmutil->rebootVM(vmname);
 				break;
 			case 6:
 				cin.clear();
@@ -98,7 +98,7 @@ int main()
 				cout<<"\nDestination server name received is:: "<<destn_server<<std::endl;
 				cout.flush();
 				destn_server="\'"+destn_server+"\'";
-				vmutil->migrateVM(vmname,destn_server);
+				xenvmutil->migrateVM(vmname,destn_server);
 				break;
 			case 7:
 				exit(1);

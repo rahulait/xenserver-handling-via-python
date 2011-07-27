@@ -14,6 +14,7 @@
  #include <stdlib.h>
  #include <stdio.h>
  #include "VMUtil.h"
+ #include "XENVMUtil.h"
  
  using namespace std;
  using std::string;
@@ -25,7 +26,7 @@ VMUtil::VMUtil(string url1,string uname,string pass){
 	password=pass;
 	}
 
-int VMUtil::startVM(string vmname){
+int VMUtil::startVM(const string &vmname){
 		//char *command;
 		//string combined_command;
 		//combined_command="python " + path + " " + url + " " + username + " " + password + " " + "vm_start" + " " + vmname;
@@ -38,7 +39,7 @@ int VMUtil::startVM(string vmname){
 		return performoperation(command);
 	}
 
-int VMUtil::stopVM(string vmname){
+int VMUtil::stopVM(const string &vmname){
 		char *command;
 		string combined_command;
 		combined_command="python " + path + " " + url + " " + username + " " + password + " " + "vm_stop" + " " + vmname;
@@ -47,7 +48,7 @@ int VMUtil::stopVM(string vmname){
 	return 0;
 	}
 
-int VMUtil::suspendVM(string vmname){
+int VMUtil::suspendVM(const string &vmname){
 		char *command;
 		string combined_command;
 		combined_command="python " + path + " " + url + " " + username + " " + password + " " + "vm_suspend" + " " + vmname;
@@ -56,7 +57,7 @@ int VMUtil::suspendVM(string vmname){
 	return 0;
 	}
 
-int VMUtil::rebootVM(string vmname){
+int VMUtil::rebootVM(const string &vmname){
 		char *command;
 		string combined_command;
 		combined_command="python " + path + " " + url + " " + username + " " + password + " " + "vm_reboot" + " " + vmname;
@@ -65,7 +66,7 @@ int VMUtil::rebootVM(string vmname){
 	return 0;
 	}
 
-int VMUtil::pauseVM(string vmname){
+int VMUtil::pauseVM(const string &vmname){
 		char *command;
 		string combined_command;
 		combined_command="python " + path + " " + url + " " + username + " " + password + " " + "vm_pause" + " " + vmname;
@@ -74,7 +75,7 @@ int VMUtil::pauseVM(string vmname){
 	return 0;
 	}
 
-int VMUtil::migrateVM(string vmname,string destn_server){
+int VMUtil::migrateVM(const string &vmname,const string &destn_server){
 		char *command;
 		string combined_command;
 		combined_command="python " + path + " " + url + " " + username + " " + password + " " + "vm_migrate" + " " + vmname + " " + destn_server;

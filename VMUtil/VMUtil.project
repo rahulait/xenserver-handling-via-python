@@ -74,8 +74,10 @@
   </VirtualDirectory>
   <VirtualDirectory Name="src">
     <File Name="src/VMUtil.cpp"/>
+    <File Name="src/XENVMUtil.cpp"/>
   </VirtualDirectory>
   <VirtualDirectory Name="include">
     <File Name="include/VMUtil.h"/>
+    <File Name="include/XENVMUtil.h"/>
   </VirtualDirectory>
 </CodeLite_Project>
