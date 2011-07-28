@@ -1,0 +1,27 @@
+Step1:-
+
+g++ -c -fPIC ./src/XENVMUtil.cpp -I./include -o XENVMUtil.o
+
+
+
+Step2:-
+
+g++ -shared -o libXENVMController.so XENVMUtil.o
+
+
+
+Step3:-
+
+g++ -o XENVMController ./test/main.cpp -I./include -lXENVMController -L.
+
+
+
+Step4:-
+
+export LD_LIBRARY_PATH=.
+
+
+
+Step5:-
+
+./XENVMController
