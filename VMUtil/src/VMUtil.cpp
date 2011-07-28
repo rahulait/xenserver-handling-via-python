@@ -20,10 +20,10 @@
  using std::string;
  
 VMUtil::VMUtil(string url1,string uname,string pass){
-	path="/home/ubuntu1/Desktop/combinedtask.py";
-	url=url1;
-	username=uname;
-	password=pass;
+	m_path="/home/ubuntu1/Desktop/combinedtask.py";
+	m_url=url1;
+	m_username=uname;
+	m_password=pass;
 	}
 
 int VMUtil::startVM(const string &vmname){

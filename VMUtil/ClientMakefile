@@ -1,0 +1,4 @@
+XENVMController : ./test/main.cpp ./libXENVMController.so
+	g++ -o XENVMController ./test/main.cpp -I./include -lXENVMController -L.
+	export LD_LIBRARY_PATH=.
+

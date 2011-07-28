@@ -18,9 +18,7 @@
  using namespace std;
  using std::string;
  
-XENVMUtil::XENVMUtil(const string &url1,const string &uname,const string &pass) : VMUtil(url1, uname, pass){
-	
-	}
+XENVMUtil::XENVMUtil(const string &url1,const string &uname,const string &pass) : VMUtil(url1, uname, pass){}
 
 int XENVMUtil::startVM(const string &vmname){
 		//char *command;
@@ -30,7 +28,7 @@ int XENVMUtil::startVM(const string &vmname){
 		//system(command);
 		char *command;
 		string combined_command;
-		combined_command="python " + path + " " + url + " " + username + " " + password + " " + "vm_start" + " " + vmname;
+		combined_command="python " + m_path + " " + m_url + " " + m_username + " " + m_password + " " + "vm_start" + " " + vmname;
 		command=&combined_command[0];
 		return performoperation(command);
 	}
@@ -38,7 +36,7 @@ int XENVMUtil::startVM(const string &vmname){
 int XENVMUtil::stopVM(const string &vmname){
 		char *command;
 		string combined_command;
-		combined_command="python " + path + " " + url + " " + username + " " + password + " " + "vm_stop" + " " + vmname;
+		combined_command="python " + m_path + " " + m_url + " " + m_username + " " + m_password + " " + "vm_stop" + " " + vmname;
 		command=&combined_command[0];
 		return performoperation(command);
 	return 0;
@@ -47,7 +45,7 @@ int XENVMUtil::stopVM(const string &vmname){
 int XENVMUtil::suspendVM(const string &vmname){
 		char *command;
 		string combined_command;
-		combined_command="python " + path + " " + url + " " + username + " " + password + " " + "vm_suspend" + " " + vmname;
+		combined_command="python " + m_path + " " + m_url + " " + m_username + " " + m_password + " " + "vm_suspend" + " " + vmname;
 		command=&combined_command[0];
 		return performoperation(command);
 	return 0;
@@ -56,7 +54,7 @@ int XENVMUtil::suspendVM(const string &vmname){
 int XENVMUtil::rebootVM(const string &vmname){
 		char *command;
 		string combined_command;
-		combined_command="python " + path + " " + url + " " + username + " " + password + " " + "vm_reboot" + " " + vmname;
+		combined_command="python " + m_path + " " + m_url + " " + m_username + " " + m_password + " " + "vm_reboot" + " " + vmname;
 		command=&combined_command[0];
 		return performoperation(command);
 	return 0;
@@ -65,7 +63,7 @@ int XENVMUtil::rebootVM(const string &vmname){
 int XENVMUtil::pauseVM(const string &vmname){
 		char *command;
 		string combined_command;
-		combined_command="python " + path + " " + url + " " + username + " " + password + " " + "vm_pause" + " " + vmname;
+		combined_command="python " + m_path + " " + m_url + " " + m_username + " " + m_password + " " + "vm_pause" + " " + vmname;
 		command=&combined_command[0];
 		return performoperation(command);
 	return 0;
@@ -74,7 +72,7 @@ int XENVMUtil::pauseVM(const string &vmname){
 int XENVMUtil::migrateVM(const string &vmname,const string &destn_server){
 		char *command;
 		string combined_command;
-		combined_command="python " + path + " " + url + " " + username + " " + password + " " + "vm_migrate" + " " + vmname + " " + destn_server;
+		combined_command="python " + m_path + " " + m_url + " " + m_username + " " + m_password + " " + "vm_migrate" + " " + vmname + " " + destn_server;
 		command=&combined_command[0];
 		return performoperation(command);
 	return 0;

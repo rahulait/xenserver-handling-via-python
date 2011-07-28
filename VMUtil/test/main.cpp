@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <iostream>
 #include <stdio.h>
 #include <climits>
 #include "XENVMUtil.h"

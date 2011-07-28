@@ -16,10 +16,10 @@ class VMUtil
 public:
 	VMUtil(const string &url1,const string &uname,const string &pass)  //Constructor
 	{
-		path="/home/ubuntu1/Desktop/combinedtask.py";
-		url=url1;
-		username=uname;
-		password=pass;
+		m_path="/home/ubuntu1/Desktop/combinedtask.py";
+		m_url=url1;
+		m_username=uname;
+		m_password=pass;
 	}
 	virtual int startVM(const string&)=0;
 	virtual int stopVM(const string&)=0;
@@ -30,10 +30,10 @@ public:
 	virtual int performoperation(char *)=0;
 	
 protected:
-	string path;
-	string url;
-	string username;
-	string password;
+	string m_path;
+	string m_url;
+	string m_username;
+	string m_password;
 };
 
 #endif
