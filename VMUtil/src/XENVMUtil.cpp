@@ -18,7 +18,21 @@
  using namespace std;
  using std::string;
  
-XENVMUtil::XENVMUtil(const string &url1,const string &uname,const string &pass) : VMUtil(url1, uname, pass){}
+XENVMUtil::XENVMUtil(){
+	
+	}
+
+void XENVMUtil::seturl(const string &url1){
+	m_url=url1;
+	}
+	
+void XENVMUtil::setusername(const string &uname){
+	m_username=uname;
+	}
+	
+void XENVMUtil::setpassword(const string &pass){
+	m_password=pass;
+	}
 
 int XENVMUtil::startVM(const string &vmname){
 		//char *command;

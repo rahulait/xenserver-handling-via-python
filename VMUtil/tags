@@ -1,1 +1,1 @@
-main	/VMUtil/test/main.cpp	/^int main()$/;"	function	line:11	signature:()	returns:using namespace std; using std::string; using std::cout; using std::cin;  
+createVMUtil	/home/ubuntu1/VMUtil/src/VMUtilfactory.cpp	/^VMUtil* VMUtilfactory::createVMUtil(Platform platfrm){$/;"	function	line:7	class:VMUtilfactory	signature:(Platform platfrm)	returns:using namespace std;  
