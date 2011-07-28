@@ -2,7 +2,7 @@
 #include <iostream>
 #include <stdio.h>
 #include <climits>
-#include "XENVMUtil.h"
+#include "VMUtilfactory.h"
 
 using namespace std;
 using std::string;
@@ -19,7 +19,11 @@ int main()
 	cin>>username;
 	cout<<"Enter the password:: ";
 	cin>>password;
-	XENVMUtil *xenvmutil=new XENVMUtil(url,username,password);
+	VMUtilfactory *vmfactory=new VMUtilfactory();
+	VMUtil *vmutil=vmfactory->createVMUtil(VMUtilfactory::XEN);
+	vmutil->seturl(url);
+	vmutil->setusername(username);
+	vmutil->setpassword(password);
 	while(1)
 	{
 		system("clear");
@@ -31,6 +35,8 @@ int main()
 		if(choice<1||choice>7)
 		{
 				cout<<"\nWrong choice entered.... Program will end now.... \n";
+				delete vmutil;
+				delete vmfactory;
 				exit(0);
 		}
 		system("clear");
@@ -44,7 +50,7 @@ int main()
 				cout<<"VMName received is "<<vmname;
 				cout.flush();
 				vmname="\'"+vmname+"\'";
-				xenvmutil->startVM(vmname);
+				vmutil->startVM(vmname);
 				break;
 			case 2:
 				cin.clear();
@@ -54,7 +60,7 @@ int main()
 				cout<<"VMName received is "<<vmname;
 				cout.flush();
 				vmname="\'"+vmname+"\'";
-				xenvmutil->stopVM(vmname);
+				vmutil->stopVM(vmname);
 				break;
 			case 3:
 				cin.clear();
@@ -64,7 +70,7 @@ int main()
 				cout<<"VMName received is "<<vmname;
 				cout.flush();
 				vmname="\'"+vmname+"\'";
-				xenvmutil->suspendVM(vmname);	
+				vmutil->suspendVM(vmname);	
 				break;
 			case 4:
 				cin.clear();
@@ -74,7 +80,7 @@ int main()
 				cout<<"VMName received is "<<vmname;
 				cout.flush();
 				vmname="\'"+vmname+"\'";
-				xenvmutil->pauseVM(vmname);
+				vmutil->pauseVM(vmname);
 				break;
 			case 5:
 				cin.clear();
@@ -84,7 +90,7 @@ int main()
 				cout<<"VMName received is "<<vmname;
 				cout.flush();
 				vmname="\'"+vmname+"\'";
-				xenvmutil->rebootVM(vmname);
+				vmutil->rebootVM(vmname);
 				break;
 			case 6:
 				cin.clear();
@@ -99,9 +105,11 @@ int main()
 				cout<<"\nDestination server name received is:: "<<destn_server<<std::endl;
 				cout.flush();
 				destn_server="\'"+destn_server+"\'";
-				xenvmutil->migrateVM(vmname,destn_server);
+				vmutil->migrateVM(vmname,destn_server);
 				break;
 			case 7:
+				delete vmutil;
+				delete vmfactory;
 				exit(1);
 		}
 		cout<<"\nPress a key to continue.......";
