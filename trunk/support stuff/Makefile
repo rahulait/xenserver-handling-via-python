@@ -1,9 +1,11 @@
-libXENVMController.so: ./XENVMUtil.o
-	g++ -shared -Wl,-soname,libXENVMController.so.1 -o libXENVMController.so.1.0.1 XENVMUtil.o
-	ln -s libXENVMController.so.1.0.1 libXENVMController.so.1
-	ln -s libXENVMController.so.1 libXENVMController.so
+libVMController.so: ./XENVMUtil.o ./VMUtilfactory.o
+	g++ -shared -Wl,-soname,libVMController.so.1 -o libVMController.so.1.0.1 XENVMUtil.o VMUtilfactory.o
+	ln -s libVMController.so.1.0.1 libVMController.so.1
+	ln -s libVMController.so.1 libVMController.so
 
-XENVMUtil.o: ./src/XENVMUtil.cpp ./include/XENVMUtil.h ./include/VMUtil.h
-	g++ -c -fPIC ./src/XENVMUtil.cpp -I./include -o XENVMUtil.o
+XENVMUtil.o: ./source/XENVMUtil.cpp ./include/XENVMUtil.h ./include/VMUtil.h
+	g++ -c -fPIC ./source/XENVMUtil.cpp -I./include -o XENVMUtil.o
 
+VMUtilfactory.o: ./source/VMUtilfactory.cpp ./include/VMUtilfactory.h ./include/VMUtil.h ./include/XENVMUtil.h
+	g++ -c -fPIC ./source/VMUtilfactory.cpp -I./include -o VMUtilfactory.o
 
