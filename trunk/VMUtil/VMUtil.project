@@ -72,10 +72,10 @@
   <VirtualDirectory Name="test">
     <File Name="test/main.cpp"/>
   </VirtualDirectory>
-  <VirtualDirectory Name="src">
-    <File Name="src/VMUtil.cpp"/>
-    <File Name="src/XENVMUtil.cpp"/>
-    <File Name="src/VMUtilfactory.cpp"/>
+  <VirtualDirectory Name="source">
+    <File Name="source/VMUtil.cpp"/>
+    <File Name="source/VMUtilfactory.cpp"/>
+    <File Name="source/XENVMUtil.cpp"/>
   </VirtualDirectory>
   <VirtualDirectory Name="include">
     <File Name="include/VMUtil.h"/>
