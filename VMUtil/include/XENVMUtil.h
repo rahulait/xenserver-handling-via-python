@@ -34,6 +34,11 @@ public:
 	virtual int suspendVM(const string &);
 	virtual int pauseVM(const string &);
 	virtual int migrateVM(const string &, const string &);
+	virtual int snapshotVM(const string &,const string &);
+	virtual int cloneVM(const string &,const string &);
+	virtual int vmfromTemplate(const string &,const string &);
+	virtual int vmtoTemplate(const string &);
+	
 private:
 	int performoperation(char *);             //***** This function performs the operation by taking input the command and then executing it...
 };

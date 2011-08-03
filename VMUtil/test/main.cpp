@@ -11,46 +11,68 @@ using std::cin;
 
 int main()
 {
-	string url, username, password,vmname,destn_server;
-	int choice=0;			//**** choice for the operation to be performed on the VM.....
-	int platform_choice=0;  //**** getting the choice of platform on which operations will be performed...
+	string url, username, password,vmname,destn_server,snapshot_name,newvm_name,templatename;
+	
+	//**** choice for the operation to be performed on the VM.....
+	int choice=0;			
+	
+	//**** getting the choice of platform on which operations will be performed...
+	int platform_choice=0;  
+	
+	//**** getting the URL of the server....
 	cout<<"Enter the url of the XenServer:: ";
-	cin>>url;               //**** getting the URL of the server....
+	cin>>url;               
+	
+	//**** getting the username of the server....
 	cout<<"Enter the username:: ";
-	cin>>username;          //**** getting the username of the server....
+	cin>>username;          
+	
+	//**** getting the password of the server....
 	cout<<"Enter the password:: ";
-	cin>>password;          //**** getting the password of the server....
-	cout<<"Choose platform as specified below:: \n1. XEN\n2. ESX(Not supported now....)\n3. HYPERV(Not supported now....)\nEnter Choice number:: ";
-	cin>>platform_choice;   //**** getting the platform choice from the User....
+	cin>>password;  
+	
+	//**** getting the platform choice from the User....
+	cout<<"Choose platform as specified below:: \n1. XEN\n2. ESX(No support yet....)\n3. HYPERV(No support yet....)\nEnter Choice number:: ";
+	cin>>platform_choice;   
 	if(platform_choice>0 && platform_choice<VMUtilfactory::INVALID)
 	{
-		VMUtilfactory *vmfactory=new VMUtilfactory();  //Create new VMUtilfactory object....
+		//Create new VMUtilfactory object....
+		VMUtilfactory *vmfactory=new VMUtilfactory();  
 		VMUtil *vmutil;
+		
 		if(platform_choice==1){
-		vmutil=vmfactory->createVMUtil(VMUtilfactory::XEN); //Create new object of required platform's class....
+			//Create new object of required platform's class....
+			vmutil=vmfactory->createVMUtil(VMUtilfactory::XEN); 
 		}
+		
 		vmutil->seturl(url);
 		vmutil->setusername(username);
 		vmutil->setpassword(password);
+		
 		while(1)
 		{
 			system("clear");
 			cout<<"-------------MENU--------------\n";
-			cout<<" 1.Start VM.\n 2.Stop VM\n 3.Suspend VM\n 4.Pause VM\n 5.Reboot VM\n 6.Migrate VM\n 7.exit\n";
+			cout<<" 1.Start VM.\n 2.Stop VM\n 3.Suspend VM\n 4.Pause VM\n 5.Reboot VM\n 6.Migrate VM\n";
+			cout<<" 7.Snapshot VM\n 8.Clone VM\n 9.VM from Template\n 10.VM to Template\n 11.Exit\n";
 			cout<<"-------------------------------\n";
 			cout<<"Enter your choice:: ";
 			cin>>choice;
-			if(choice<1||choice>7)
+			if(choice<1||choice>11)
 			{
 					cout<<"\nWrong choice entered.... Program will end now.... \n";
-					delete vmutil;      //Freeing the memory....
-					delete vmfactory;   //Freeing the memory....
+					//Freeing the memory....
+					delete vmutil;      
+					delete vmfactory;   
 					exit(0);
 			}
+			
 			system("clear");
+			
 			switch(choice)
 			{
-				case 1:                 //Starting a particular VM.....
+				//Starting a particular VM.....
+				case 1:                 
 					cin.clear();
 					cin.ignore(INT_MAX,'\n');
 					cout<<"Enter the vmname which you want to start:: ";
@@ -60,7 +82,9 @@ int main()
 					vmname="\'"+vmname+"\'";
 					vmutil->startVM(vmname);
 					break;
-				case 2:                //Stopping a particular VM.....
+				
+				//Stopping a particular VM.....
+				case 2:                
 					cin.clear();
 					cin.ignore(INT_MAX,'\n');
 					cout<<"Enter the vmname which you want to stop:: ";
@@ -70,7 +94,9 @@ int main()
 					vmname="\'"+vmname+"\'";
 					vmutil->stopVM(vmname);
 					break;
-				case 3:				   //Suspending a particular VM.....
+				
+				//Suspending a particular VM.....
+				case 3:				   
 					cin.clear();
 					cin.ignore(INT_MAX,'\n');
 					cout<<"Enter the vmname which you want to suspend:: ";
@@ -80,7 +106,9 @@ int main()
 					vmname="\'"+vmname+"\'";
 					vmutil->suspendVM(vmname);	
 					break;
-				case 4:               //Pausing a particular VM.....
+				
+				//Pausing a particular VM.....
+				case 4:               
 					cin.clear();
 					cin.ignore(INT_MAX,'\n');
 					cout<<"Enter the vmname which you want to pause:: ";
@@ -90,7 +118,9 @@ int main()
 					vmname="\'"+vmname+"\'";
 					vmutil->pauseVM(vmname);
 					break;
-				case 5:              //Rebooting a particular VM.....
+					
+				//Rebooting a particular VM.....
+				case 5:              
 					cin.clear();
 					cin.ignore(INT_MAX,'\n');
 					cout<<"Enter the vmname which you want to reboot:: ";
@@ -100,7 +130,9 @@ int main()
 					vmname="\'"+vmname+"\'";
 					vmutil->rebootVM(vmname);
 					break;
-				case 6:				//Migrating a particular VM.....
+					
+				//Migrating a particular VM.....
+				case 6:				
 					cin.clear();
 					cin.ignore(INT_MAX,'\n');
 					cout<<"Enter the vmname which you want to migrate:: ";
@@ -115,7 +147,72 @@ int main()
 					destn_server="\'"+destn_server+"\'";
 					vmutil->migrateVM(vmname,destn_server);
 					break;
-				case 7:
+					
+				//Snapshot a particular VM.....
+				case 7:				
+					cin.clear();
+					cin.ignore(INT_MAX,'\n');
+					cout<<"Enter the vmname whose shapshot you want to take:: ";
+					getline(cin,vmname,'\n');
+					cout<<"VMName received is "<<vmname;
+					cout.flush();
+					vmname="\'"+vmname+"\'";
+					cout<<"\nEnter the snapshot_name:: ";
+					getline(cin,snapshot_name,'\n');
+					cout<<"\nSnapshot name is:: "<<snapshot_name<<std::endl;
+					cout.flush();
+					snapshot_name="\'"+snapshot_name+"\'";
+					vmutil->snapshotVM(vmname,snapshot_name);
+					break;
+				
+				//Clones a particular VM.....
+				case 8:				
+					cin.clear();
+					cin.ignore(INT_MAX,'\n');
+					cout<<"Enter the vmname whome you want to clone:: ";
+					getline(cin,vmname,'\n');
+					cout<<"VMName received is "<<vmname;
+					cout.flush();
+					vmname="\'"+vmname+"\'";
+					cout<<"\nEnter the name for new VM to be generated:: ";
+					getline(cin,newvm_name,'\n');
+					cout<<"New VM's name is:: "<<newvm_name<<std::endl;
+					cout.flush();
+					newvm_name="\'"+newvm_name+"\'";
+					vmutil->cloneVM(vmname,newvm_name);
+					break;
+				
+				//VM from a particular Template.....
+				case 9:				
+					cin.clear();
+					cin.ignore(INT_MAX,'\n');
+					cout<<"Enter the Template_name whose VM you want to create:: ";
+					getline(cin,templatename,'\n');
+					cout<<"Template_Name received is "<<templatename;
+					cout.flush();
+					templatename="\'"+templatename+"\'";
+					cout<<"\nEnter the name for new VM to be generated:: ";
+					getline(cin,newvm_name,'\n');
+					cout<<"New VM's name is:: "<<newvm_name<<std::endl;
+					cout.flush();
+					newvm_name="\'"+newvm_name+"\'";
+					vmutil->vmfromTemplate(templatename,newvm_name);
+					break;
+				
+				//Converting VM to Template.....
+				case 10:              
+					cin.clear();
+					cin.ignore(INT_MAX,'\n');
+					cout<<"Enter the vmname which you want to convert to template:: ";
+					getline(cin,vmname,'\n');
+					cout<<"VMName received is "<<vmname;
+					cout.flush();
+					vmname="\'"+vmname+"\'";
+					vmutil->vmtoTemplate(vmname);
+					break;
+				
+				//Exiting from the program.....
+				case 11:
 					delete vmutil;
 					delete vmfactory;
 					exit(1);
