@@ -72,14 +72,14 @@
   <VirtualDirectory Name="test">
     <File Name="test/main.cpp"/>
   </VirtualDirectory>
-  <VirtualDirectory Name="source">
-    <File Name="source/VMUtil.cpp"/>
-    <File Name="source/VMUtilfactory.cpp"/>
-    <File Name="source/XENVMUtil.cpp"/>
+  <VirtualDirectory Name="src">
+    <File Name="src/VMUtil.cpp"/>
+    <File Name="src/VMUtilfactory.cpp"/>
+    <File Name="src/XENVMUtil.cpp"/>
   </VirtualDirectory>
   <VirtualDirectory Name="include">
     <File Name="include/VMUtil.h"/>
-    <File Name="include/XENVMUtil.h"/>
     <File Name="include/VMUtilfactory.h"/>
+    <File Name="include/XENVMUtil.h"/>
   </VirtualDirectory>
 </CodeLite_Project>

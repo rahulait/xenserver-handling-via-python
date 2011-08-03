@@ -39,6 +39,10 @@ public:
 	virtual int suspendVM(const string&)=0;
 	virtual int pauseVM(const string&)=0;
 	virtual int migrateVM(const string&, const string&)=0;
+	virtual int snapshotVM(const string&,const string&)=0;
+	virtual int cloneVM(const string&,const string&)=0;
+	virtual int vmfromTemplate(const string &,const string &)=0;
+	virtual int vmtoTemplate(const string &)=0;
 	
 	//Variables which can be used by other files which inherit this file.....
 protected:
@@ -46,6 +50,20 @@ protected:
 	string m_url;
 	string m_username;
 	string m_password;
+};
+
+class VMUtilexception {
+public:
+	VMUtilexception(std::string msg){
+		message=msg;
+	}
+	
+	std::string getMessage(){
+		return message;
+	}
+	
+private:
+	std::string message;
 };
 
 #endif

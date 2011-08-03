@@ -97,3 +97,13 @@ int VMUtil::performoperation(char* command){
 	pclose(op);
 	return 0;
 	}
+
+//****************************************************************************
+
+VMUtilexception::VMUtilexception(std::string msg){
+		message=msg;
+	}
+	
+std::string VMUtilexception::getMessage(){
+		return message;
+	}

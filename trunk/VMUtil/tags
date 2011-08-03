@@ -1,1 +1,17 @@
-main	/home/ubuntu1/VMUtil/test/main.cpp	/^int main()$/;"	function	line:12	signature:()	returns:using namespace std; using std::string; using std::cout; using std::cin;  
+XENVMUTIL_H	/VMUtil/include/XENVMUtil.h	/^#define XENVMUTIL_H$/;"	macro	line:15
+XENVMUtil	/VMUtil/include/XENVMUtil.h	/^class XENVMUtil : public VMUtil      \/\/**** Inheriting VMUtil here.......$/;"	class	line:24	inherits:VMUtil
+XENVMUtil	/VMUtil/include/XENVMUtil.h	/^	XENVMUtil(); \/\/Constructor$/;"	prototype	line:27	class:XENVMUtil	access:public	signature:()	returns:
+seturl	/VMUtil/include/XENVMUtil.h	/^	virtual void seturl(const string &);       \/\/***** Pure virtual functions in VMUtil used here as virtual functions......$/;"	prototype	line:28	class:XENVMUtil	access:public	implementation:virtual	signature:(const string &)	returns:virtual void
+setusername	/VMUtil/include/XENVMUtil.h	/^	virtual void setusername(const string &);$/;"	prototype	line:29	class:XENVMUtil	access:public	implementation:virtual	signature:(const string &)	returns:virtual void
+setpassword	/VMUtil/include/XENVMUtil.h	/^	virtual void setpassword(const string &);$/;"	prototype	line:30	class:XENVMUtil	access:public	implementation:virtual	signature:(const string &)	returns:virtual void
+startVM	/VMUtil/include/XENVMUtil.h	/^	virtual int startVM(const string &);$/;"	prototype	line:31	class:XENVMUtil	access:public	implementation:virtual	signature:(const string &)	returns:virtual int
+stopVM	/VMUtil/include/XENVMUtil.h	/^	virtual int stopVM(const string &);$/;"	prototype	line:32	class:XENVMUtil	access:public	implementation:virtual	signature:(const string &)	returns:virtual int
+rebootVM	/VMUtil/include/XENVMUtil.h	/^	virtual int rebootVM(const string &);$/;"	prototype	line:33	class:XENVMUtil	access:public	implementation:virtual	signature:(const string &)	returns:virtual int
+suspendVM	/VMUtil/include/XENVMUtil.h	/^	virtual int suspendVM(const string &);$/;"	prototype	line:34	class:XENVMUtil	access:public	implementation:virtual	signature:(const string &)	returns:virtual int
+pauseVM	/VMUtil/include/XENVMUtil.h	/^	virtual int pauseVM(const string &);$/;"	prototype	line:35	class:XENVMUtil	access:public	implementation:virtual	signature:(const string &)	returns:virtual int
+migrateVM	/VMUtil/include/XENVMUtil.h	/^	virtual int migrateVM(const string &, const string &);$/;"	prototype	line:36	class:XENVMUtil	access:public	implementation:virtual	signature:(const string &, const string &)	returns:virtual int
+snapshotVM	/VMUtil/include/XENVMUtil.h	/^	virtual int snapshotVM(const string &,const string &);$/;"	prototype	line:37	class:XENVMUtil	access:public	implementation:virtual	signature:(const string &,const string &)	returns:virtual int
+cloneVM	/VMUtil/include/XENVMUtil.h	/^	virtual int cloneVM(const string &,const string &);$/;"	prototype	line:38	class:XENVMUtil	access:public	implementation:virtual	signature:(const string &,const string &)	returns:virtual int
+vmfromTemplate	/VMUtil/include/XENVMUtil.h	/^	virtual int vmfromTemplate(const string &,const string &);$/;"	prototype	line:39	class:XENVMUtil	access:public	implementation:virtual	signature:(const string &,const string &)	returns:virtual int
+vmtoTemplate	/VMUtil/include/XENVMUtil.h	/^	virtual int vmtoTemplate(const string &);$/;"	prototype	line:40	class:XENVMUtil	access:public	implementation:virtual	signature:(const string &)	returns:virtual int
+performoperation	/VMUtil/include/XENVMUtil.h	/^	int performoperation(char *);             \/\/***** This function performs the operation by taking input the command and then executing it...$/;"	prototype	line:43	class:XENVMUtil	access:private	signature:(char *)	returns:int
